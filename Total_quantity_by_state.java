@@ -60,6 +60,10 @@ public static void main(String args[]) throws  IOException, ClassNotFoundExcepti
     Job job = Job.getInstance(conf, "Total Sales by State");
     job.setJarByClass(Total_quantity_by_state.class);
     job.setMapperClass(StateSalesMapper.class);
+    
+    job.setMapOutputKeyClass(Text.class);
+    job.setMapOutputValueClass(LongWritable.class);
+    
     //job.setCombinerClass(ReduceClass.class);
     job.setPartitionerClass(StateSalesPartitioner.class);
     job.setReducerClass(StateSalesReducer.class);
